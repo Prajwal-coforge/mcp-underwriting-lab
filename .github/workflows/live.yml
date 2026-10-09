@@ -21,11 +21,14 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      # This runner is the lab Mac. actions/setup-python installs into
+      # /Users/runner, which this account cannot create, so the job uses
+      # the Python 3.12 already on the machine.
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          python3.12 -m pip install -r requirements.txt
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Ollama
         run: curl -fsS http://127.0.0.1:11434/api/version
       - name: Unit tests

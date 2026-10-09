@@ -1,0 +1,18 @@
+{
+  "app-approve": {
+    "territory_risk_band": "low",
+    "prior_claim_count": 0
+  },
+  "app-deny": {
+    "territory_risk_band": "high",
+    "prior_claim_count": 3
+  },
+  "app-refer": {
+    "territory_risk_band": "low",
+    "prior_claim_count": 0
+  },
+  "app-timeout": {
+    "territory_risk_band": "low",
+    "prior_claim_count": 0
+  }
+}

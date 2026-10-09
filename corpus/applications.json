@@ -1,0 +1,46 @@
+[
+  {
+    "id": "app-approve",
+    "applicant_name": "Amina Cole",
+    "age": 42,
+    "years_licensed": 20,
+    "prior_at_fault_claims": 0,
+    "coverage_amount": 50000,
+    "territory_code": "T1",
+    "golden_decision": "approve",
+    "risk_timeout": false
+  },
+  {
+    "id": "app-deny",
+    "applicant_name": "Jordan Hale",
+    "age": 23,
+    "years_licensed": 2,
+    "prior_at_fault_claims": 3,
+    "coverage_amount": 500000,
+    "territory_code": "T4",
+    "golden_decision": "deny",
+    "risk_timeout": false
+  },
+  {
+    "id": "app-refer",
+    "applicant_name": "Luis Ortega",
+    "age": 35,
+    "years_licensed": 10,
+    "prior_at_fault_claims": 0,
+    "coverage_amount": null,
+    "territory_code": "T1",
+    "golden_decision": "refer",
+    "risk_timeout": false
+  },
+  {
+    "id": "app-timeout",
+    "applicant_name": "Riley Quinn",
+    "age": 42,
+    "years_licensed": 20,
+    "prior_at_fault_claims": 0,
+    "coverage_amount": 50000,
+    "territory_code": "T1",
+    "golden_decision": "refer",
+    "risk_timeout": true
+  }
+]

@@ -1,0 +1,45 @@
+name: live
+
+# Runs on the same self-hosted runner as the equipment-claims lab, where
+# Ollama qwen3:8b is already local. It is not triggered by pull requests,
+# so code from forks never runs on that machine.
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-services
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: [self-hosted, mcp-lab-live]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Ollama
+        run: curl -fsS http://127.0.0.1:11434/api/version
+      - name: Unit tests
+        run: pytest -q
+      - name: Live tests, no skips allowed
+        run: |
+          pytest -m live -q -rs --junitxml=live-results.xml
+          python scripts/check_no_skips.py live-results.xml
+      - name: Dev evaluation
+        run: python scripts/run_eval.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-results
+          path: |
+            live-results.xml
+            var/eval_report.json

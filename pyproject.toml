@@ -1,0 +1,15 @@
+[project]
+name = "underwriting-pipeline"
+version = "0.1.0"
+description = "Multi-agent insurance underwriting pipeline."
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-m 'not live'"
+markers = ["live: needs local Ollama qwen3:8b; run with -m live"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

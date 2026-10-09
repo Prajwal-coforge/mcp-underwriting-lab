@@ -27,8 +27,9 @@ jobs:
       - name: Install dependencies
         run: |
           export PATH="$HOME/.local/bin:$PATH"
-          python3.12 -m pip install -r requirements.txt
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          python3.12 -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
       - name: Ollama
         run: curl -fsS http://127.0.0.1:11434/api/version
       - name: Unit tests
